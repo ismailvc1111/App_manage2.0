@@ -1,5 +1,6 @@
 import 'package:expense/controllers/db_helper.dart';
 import 'package:expense/pages/widgets/confirm_dialog.dart';
+import 'package:expense/pages/widgets/pdf_api.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
@@ -23,6 +24,19 @@ class _SettingsState extends State<Settings> {
         title: Text(
           "Settings",
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.picture_as_pdf ,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              final pdfFile = await PdfApi.generateTable();
+
+              PdfApi.openFile(pdfFile);
+            },
+          )
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.all(
