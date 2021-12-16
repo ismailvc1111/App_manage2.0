@@ -57,7 +57,7 @@ class _AddNameState extends State<AddName> {
             ),
             //
             Text(
-              "What should we Call You ?",
+              "What should we call you?",
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 24.0,
@@ -114,7 +114,7 @@ class _AddNameState extends State<AddName> {
                         ),
                         backgroundColor: Colors.white,
                         content: Text(
-                          "Please Enter a name",
+                          "Please enter your name",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,

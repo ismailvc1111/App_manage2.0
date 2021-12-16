@@ -331,7 +331,7 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
                     SnackBar(
                       backgroundColor: Colors.red[700],
                       content: Text(
-                        "Please enter a valid Amount !",
+                        "Please enter a valid amount!",
                         style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.white,

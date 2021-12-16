@@ -140,7 +140,6 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
                 width: 2.0,
               ),
               colors: [
-                Colors.blueAccent,
                 Static.PrimaryColor,
               ],
             ),
@@ -209,7 +208,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
           if (snapshot.hasError) {
             return Center(
               child: Text(
-                "Oopssss !!! There is some error !",
+                "Oops! There is some error, please contact with us.",
               ),
             );
           }
@@ -217,7 +216,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
             if (snapshot.data!.isEmpty) {
               return Center(
                 child: Text(
-                  "You haven't added Any Data !",
+                  "You haven't added any data!",
                 ),
               );
             }
@@ -429,7 +428,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
                           ],
                         ),
                         child: Text(
-                          "Not Enough Data to render Chart",
+                          "Not enough data to render the chart",
                           style: TextStyle(
                             fontSize: 20.0,
                           ),
@@ -525,7 +524,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
                           ],
                         ),
                         child: Text(
-                          "Insufficient Data to render chart !",
+                          "Insufficient data to render the chart",
                           style: TextStyle(
                             fontSize: 20.0,
                           ),
@@ -755,7 +754,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
         bool? answer = await showConfirmDialog(
           context,
           "WARNING",
-          "This will delete this record. This action is irreversible. Do you want to continue ?",
+          "This will delete this record. This action is irreversible. Do you want to continue?",
         );
         if (answer != null && answer) {
           await dbHelper.deleteData(index);
@@ -853,7 +852,7 @@ class _HomePageSingleColorState extends State<HomePageSingleColor> {
         bool? answer = await showConfirmDialog(
           context,
           "WARNING",
-          "This will delete this record. This action is irreversible. Do you want to continue ?",
+          "This will delete this record. This action is irreversible. Do you want to continue?",
         );
 
         if (answer != null && answer) {

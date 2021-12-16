@@ -2,6 +2,9 @@ import 'package:expense/controllers/db_helper.dart';
 import 'package:expense/pages/widgets/confirm_dialog.dart';
 import 'package:expense/pages/widgets/pdf_api.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:expense/static.dart' as Static;
+
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -11,11 +14,13 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  //
-
+  late SharedPreferences preferences;
   DbHelper dbHelper = DbHelper();
+  
+  getPreference() async {
+    preferences = await SharedPreferences.getInstance();
+  }
 
-  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +28,7 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         title: Text(
           "Settings",
+          style: TextStyle(color: Colors.white),
         ),
         actions: <Widget>[
           IconButton(
@@ -46,7 +52,7 @@ class _SettingsState extends State<Settings> {
           ListTile(
             onTap: () async {
               bool answer = await showConfirmDialog(context, "Warning",
-                  "This is irreversible. Your entire data will be Lost");
+                  "This is irreversible. Your entire data will be lost");
               if (answer) {
                 await dbHelper.cleanData();
                 Navigator.of(context).pop();
@@ -70,7 +76,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             subtitle: Text(
-              "This is irreversible",
+              "This is irreversible.",
             ),
             trailing: Icon(
               Icons.delete_forever,
@@ -122,6 +128,18 @@ class _SettingsState extends State<Settings> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop(nameEditing);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Static.PrimaryColor,
+                            content: Text(
+                              "Your name has changed succesfully!",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
                       },
                       child: Text(
                         "OK",
@@ -154,7 +172,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             subtitle: Text(
-              "Welcome {newname}",
+              "Change your name, you can change it as many times as you want."
             ),
             trailing: Icon(
               Icons.change_circle,
@@ -190,14 +208,14 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                   title: Text(
-                    "Local Bio Auth",
+                    "Local Bio Authentication",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   subtitle: Text(
-                    "Secure This app, Use Fingerprint to unlock the app.",
+                    "Secure this app, use fingerprint to unlock the app.",
                   ),
                 );
               } else {
